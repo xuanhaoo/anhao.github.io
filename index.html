@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Anhao's blog - 干净使然，像心称意</title><meta name="author" content="Anhao"><meta name="copyright" content="Anhao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="伯乐得见绝世好马，子期终遇伯牙佳音">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Anhao&#39;s blog">
+<meta property="og:url" content="http://ianhao.top/index.html">
+<meta property="og:site_name" content="Anhao&#39;s blog">
+<meta property="og:description" content="伯乐得见绝世好马，子期终遇伯牙佳音">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ianhao.top/null">
+<meta property="article:author" content="Anhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ianhao.top/null"><link rel="shortcut icon" href="/img/logo.svg"><link rel="canonical" href="http://ianhao.top/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-01-20 18:08:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/iconfont.min.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/wallhaven-j5mz95_2560x1440.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Anhao's blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Anhao's blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="mailto:1335637386@qq.com" target="_blank" title="Email"><i class="iconfont icon-youxiang card_icon"></i></a><a class="social-icon" href="https://weixin.com" target="_blank" title="Weixin"><i class="iconfont icon-weixin1 card_icon"></i></a><a class="social-icon" href="https://www.bilibili.com" target="_blank" title="Bilibili"><i class="iconfont icon-bilibili1 card_icon"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑">     <img class="post_bg" src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="okhttp踩坑"></a></div><div class="recent-post-info"><a class="article-title" href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑">okhttp踩坑</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-12-04T12:08:39.000Z" title="发表于 2020-12-04 20:08:39">2020-12-04</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div><div class="content">ResponseBody.string()&emsp;　　平常我们用的客户端http调用工具一般是RestTemplate,HttpClient,okhttp，以前使用过前两者，没咋接触过okhttp，我看teammark项目中使用okhttp比较多，于是我这次也用了一下okhttp，果不其然，还是自己踩了一个坑：
+&emsp;　　下面是一个okhttp请求的代码块：
+1234567891011121314151617181920212223242526...okhttp3.Request okHttpRequest = new okhttp3.Request.Builder()        .url(saveUrl)        .post(requestBody)        .build();Call call = okHttpClient.newCall(okHttpRequest);try &#123;    okhttp3.Response response = call.execute();    if (Objects.nonNull(response)) &#1 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算">     <img class="post_bg" src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="List对象集合根据组合属性进行差集运算"></a></div><div class="recent-post-info"><a class="article-title" href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算">List对象集合根据组合属性进行差集运算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-24T06:29:08.000Z" title="发表于 2020-11-24 14:29:08">2020-11-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div><div class="content">背景&emsp;　　当List是一个基本数据类型的集合的时候，进行集合运算还比较方便，但是有这么一些业务场景，比如某个用户权限变化的列表，或者取数据的变化结果，当时有时候用笨方法多循环两次也是可以的，只不过代码显得比较复杂，而且性能也不会太好。这次迭代我也就遇到这么一个需求。
+实现&emsp;　　场景：我们TM系统用户是四个维度这样的数据，我们需要保存这样的数据，提供给前端一个这样的接口，前端传递用户相应的数据（用户组|职位|部门|用户），但是前端不会告诉我们，哪些是新增的，哪些是删除的，还有哪些没有变化，反正数据一股脑的给你，后端来自己组织。​当然，一般第一想法都是循环嘛，但是我一般的习惯都是将这种处理方法放在最后一个备选，实在想不出来好的方式才会使用最简单粗暴的方式哈哈哈。而且这个地方是要根据实体类里面的两个字段一起判断，无形中增加复杂度。List可以这样求差集（交并集类似）：
+12// 差集List&lt;String&gt; subList = list1.stream().filter(item -&gt; list2.contains(item)).collect(toLi ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark">     <img class="post_bg" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/blog20-1120/TM-logo.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="再见，teammark"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark">再见，teammark</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-20T12:04:14.000Z" title="发表于 2020-11-20 20:04:14">2020-11-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9A%8F%E6%89%8B%E8%AE%B0/">随手记</a></span></div><div class="content">加入时的欣喜&emsp;　　7月份来到三节课面试的时候，当我一进入公司的时候，我觉得这是一个可以的地方，也许也就那么十分钟的时间，突然感觉这家公司不错，然后就是面试，果不其然，面到了中午12点过，自然应该也是可以，过了两天，收到了谈薪，其实内心是很开心的，一切看起来都是顺利的。也做到了离职后的无缝衔接，自然感觉良好。
+&emsp;　　其实加入前，我也不是很清楚teammark究竟是在做什么东西，只知道大概就是confluence这种产品，当我正式入职后，在我的使用过程中，我感觉发现了新大陆，发现一款很理想的东西。然后就是加入了团队，感觉团队里个个都是大佬，和他们一起写东西肯定会有前途哈哈哈，前面几天的感受就是有一种从很压抑的团队来到了一个充满活力的团队，有一种在工作中从未体验到的轻松感，我想这样的氛围对了，这是我想要的氛围。
+相处的四个月&emsp;　　说实话，最开始，我不太会用teammark这个产品，也是慢慢学习，慢慢了解，发掘功能，后来感觉到了是一个优秀的产品，很有意思。
+&emsp;　　开始的前两周，是蛮痛苦的两周，因为要熟悉代码和业务逻辑，看别人的代码确实是件很难受的事情，没 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型">     <img class="post_bg" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/JMM%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%981.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM理解---内存模型"></a></div><div class="recent-post-info"><a class="article-title" href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型">JVM理解---内存模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-18T14:03:37.000Z" title="发表于 2020-07-18 22:03:37">2020-07-18</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Java/">Java</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/JVM/">JVM</a></span></div><div class="content">为什么需要Java内存模型&emsp;　　Java内存模型（Java Memory Model：JMM）是Java虚拟机规范定义的，用来屏蔽Java程序在不同的硬件环境和操作系统对内存访问的差异性，使之Java程序在各种不同的平台上达到内存访问的一致性。
+CPU和缓存一致性&emsp;　　计算机在执行程序的时候，每条指令都是放在CPU中进行执行的，而执行的时候一般都会与数据交互，但是数据又是存放在计算机主内存（计算机物理内存）中的，最开始的单核的CPU就处理问题很简单，直接读取然后放回主内存即可，但是随着计算机技术的不断发展，CPU的执行速度越来越快，从内存中读取和写入数据的速度和CPU的执行速度差距越来越大，就会导致CPU每次操作内存都会花费很多等待时间，造成资源的浪费。&emsp;　　后来人们提出一种高速缓存交互方案，就是在CPU和主内存之间增加高速缓存，这样当程序运行时，会将需要的数据从主内存中拷贝一份在高速缓存中，CPU在计算数据时直接从高速缓存中读取，当处理完数据再将数据刷新回主内存。&emsp;　　CPU技术还在不断发展，一层缓存满足不了需求，于是衍生出多级缓存。CPU的多 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/redis%E9%94%81%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" title="redis锁实现分布式环境下的定时任务">     <img class="post_bg" src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="redis锁实现分布式环境下的定时任务"></a></div><div class="recent-post-info"><a class="article-title" href="/redis%E9%94%81%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" title="redis锁实现分布式环境下的定时任务">redis锁实现分布式环境下的定时任务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-10T06:18:46.000Z" title="发表于 2020-07-10 14:18:46">2020-07-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a></span></div><div class="content">使用redis锁控制定时任务的意义&emsp;　　有一次在开发一个获取审批状态结果的接口时，用了一个定时任务定时去拉取的操作，在这个系统中，我没有直接接入我们的xxl-job，因为我想换一种实现方式来试一下，同时业务对定时任务的需求不高，所以我打算尝试使用@Scheduled来实现。
+&emsp;　　将cron表达式的值配置在Apollo上，实现可以动态刷新的机制。这样定时任务确实是可以跑起来的，但是一般我们的应用都是一个分布式部署的状态，一个应用部署了多台服务器，那么这里就出现了一个问题：就是当每台机器上的定时任务都被触发了，同时去拉取状态以及更改数据，那么这里就可能导致将数据更改错误，引起不必要的问题，所以我们得通过手段来控制，使的到任务触发时间，只需要一台应用服务器去触发任务就好了。
+
+此处的Apollo是携程开源的一款分布式的配置中心
+单机下使用@Scheduled没有问题哈
+
+代码实现redis配置&emsp;　　redis的基本配置这个自己在网上找一下就可以了。主要是用到了RedisTemlate，下面主要讲解redis锁定时任务的实现，这里是将redis获取锁的过程通过A ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/xxl-job%E4%B9%8B%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E4%BB%BB%E5%8A%A1%E7%BC%96%E6%8E%92%E6%80%9D%E8%B7%AF/" title="xxl-job之实现流程任务编排思路">     <img class="post_bg" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/XXL-JOB%E5%B7%A5%E4%BD%9C%E6%B5%81.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xxl-job之实现流程任务编排思路"></a></div><div class="recent-post-info"><a class="article-title" href="/xxl-job%E4%B9%8B%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E4%BB%BB%E5%8A%A1%E7%BC%96%E6%8E%92%E6%80%9D%E8%B7%AF/" title="xxl-job之实现流程任务编排思路">xxl-job之实现流程任务编排思路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-06T08:47:04.000Z" title="发表于 2020-07-06 16:47:04">2020-07-06</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%BC%80%E6%BA%90/">开源</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/XXL-JOB/">XXL-JOB</a></span></div><div class="content">背景&emsp;　　某一天一如既往的上班”旅途“中，我的领导在开早会的时候，说我最近没啥事，于是让我研究一下Activiti工作流引擎与Drools规则引擎，当时也不知道后边具体要做什么，管它的，先看看再说。看了几天后，写了个简单的demo出来，结果发现Activiti这个东西不就是可以用来做流程审批的嘛；最后我们就开始开发基于Activiti的工作流引擎。并且部分功能与定时任务调度中心进行整合，实现了简单的流程编排任务。
+
+因为工作流相关的东西在公司的电脑上，公司对于安全保密性十分严格，所以本文不阐述具体实现，只记录一下当时的实现思路。
+
+&emsp;　　调度中心本身有一个子任务的概念，但子任务是有先后顺序的，所以这里不太符合需求。在xxl-job的github上我看到过这样一个issue：看来还是很多人想要这个功能呢，目前我们先自己实现一个简单的流程任务编排。
+实现思路概念描述&emsp;　　因为涉及到了工作流的东西，在此处只简单介绍一下Activiti工作流引擎。
+
+工作流（WorkFlow），就是”业务过程的部分或整体在计算机应用环境下的自动化“，它主要解决的是”使在多个参与者 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/%E6%94%B9%E9%80%A0xxl-job%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90%E4%BD%93%E7%B3%BB/" title="改造xxl-job的客户端日志文件生成体系">     <img class="post_bg" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90%E7%AD%96%E7%95%A5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="改造xxl-job的客户端日志文件生成体系"></a></div><div class="recent-post-info"><a class="article-title" href="/%E6%94%B9%E9%80%A0xxl-job%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90%E4%BD%93%E7%B3%BB/" title="改造xxl-job的客户端日志文件生成体系">改造xxl-job的客户端日志文件生成体系</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-04T09:54:33.000Z" title="发表于 2020-07-04 17:54:33">2020-07-04</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%BC%80%E6%BA%90/">开源</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/XXL-JOB/">XXL-JOB</a></span></div><div class="content">为什么要改造XXL-JOB原有的日志文件生成体系&emsp;　　xxl-job原本自己的客户端日志文件生成策略是：一个日志记录就生成一个文件，也就是当数据库存在一条日志logId，对应的客户端就会生成一个文件，由于定时任务跑批很多，并且有些任务间隔时间很短，比如几秒触发一次，这样的结果就是客户端会生成大量的文件，但是每个文件的内容其实不多，但大量的单独文件相比会占用更多的磁盘，造成磁盘资源紧张，长久以来，就会触发资源报警，所以，如果不想经常去清理日志文件的话，那么将零碎的文件通过某种方式进行整合就显得迫切需要了。
+
+本文篇幅较长，代码涉及较多啦~
+
+改造后的日志文件生成策略基本描述&emsp;　　减少日志文件个数，其实就是要将分散的日志文件进行合并，同时建立外部索引文件维护各自当次日志Id所对应的起始日志内容。在读取的时候先通过读取索引文件，进而再读取真实的日志内容。
+&emsp;　　下面是日志文件描述分析图：
+
+
+对于一个执行器，在执行器下的所有的定时任务每天只生成一个logId_jobId_index.log的索引文件，用来维护日志Id与任务Id的对应关系；
+
+对于一个定时任务，每 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/xxl-job%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%9F%BA%E7%A1%80/" title="xxl-job定时任务调度中心基础">     <img class="post_bg" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/xxl-job%E7%89%B9%E6%80%A7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xxl-job定时任务调度中心基础"></a></div><div class="recent-post-info"><a class="article-title" href="/xxl-job%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%9F%BA%E7%A1%80/" title="xxl-job定时任务调度中心基础">xxl-job定时任务调度中心基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-03T05:55:03.000Z" title="发表于 2020-07-03 13:55:03">2020-07-03</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%BC%80%E6%BA%90/">开源</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/XXL-JOB/">XXL-JOB</a></span></div><div class="content">xxl-job&emsp;　　在公司也是做基础架构项目的，所以免不了改造市场上一些优秀的开源组件，今天我们来看看这款定时任务调度中心xxl-job。xxl-job定时任务调度中心是业界非常流行的开源的轻量级分布式定时任务调度平台，最初是由美团点评的大神许雪里开发的，当然，现在已经有一个团队在开发了，而且社区发展的很好，版本也在不断更新，也有很多优秀的作品，有兴趣的可以去XXL项目主页看看.
+基础信息为什么要用定时任务平台来做定时任务&emsp;　　在springboot中，我们可以通过@Scheduled注解来实现定时任务，但是当部署模式分布式，多机部署时，就会出现任务重复执行的问题，当然我们可以通过某些手段来让它只执行一次，比如redis分布式锁，这个我们后边讨论。选用一个定时任务调度中心，不但可以解决分布式的问题，而且它还可以实现动态配置，以及日志查看，等一些优秀的功能。
+特性&emsp;　　定时任务组件也有许多，但有些显得过于重量级，比如当当开源的elastic-job，功能相对丰富，支持扩展多，但重量级的必然会有一些繁琐的东西，比如部署麻烦，阅读困难，改造成本相对较大。所以公司 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF%E4%B8%8B%EF%BC%8C%E5%A4%84%E7%90%86%E5%A7%BF%E5%8A%BF%EF%BC%88%E4%B8%80%EF%BC%89/" title="无题">     <img class="post_bg" src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF%E4%B8%8B%EF%BC%8C%E5%A4%84%E7%90%86%E5%A7%BF%E5%8A%BF%EF%BC%88%E4%B8%80%EF%BC%89/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-02T07:46:51.488Z" title="发表于 2020-07-02 15:46:51">2020-07-02</time></span></div><div class="content">
+title: 并发场景下，处理姿势（一）date: 2020-07-02 15:46:51tags: 分布式categories: 技术cover:
+并发&emsp;　　并发：指两个或多个事件在同一时间间隔发生，常常因为时间间隔很小，会让我们误认为多个事件同时发生，这是不正确的，同一时间发生的叫做并行。在工作中，经常会遇到一些并发问题，可能由于场景不同，有些并发到达一定数量级，为高并发，当然也有一些并发并不高，但也存在一定并发量，无论是那种并发，其实我们都要引起注意，因为它们带来的后果都是类似的，造成数据或预期结果出现不一致的情况。
+场景&emsp;　　最近在工作中遇到这样一个场景，当提交代码事件发生时，会通过webhook来调取API接口生成一条记录，但是配置webhook这样的操作，非我们可控（属于其他系统的功能），因此当有很多次重复的配置webhook时，就会出现多个相同的webhook，类似于大量接口请求并发，而且调用这个接口会在我们的数据库中生成一条有效数据，如果出现大量webhook请求，而我们不做任何限制操作的话，就会造成数据库数据错误；感觉这种也有点像订单系统中第三方 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84spring-boot-starter/" title="实现一个自己的spring-boot-starter">     <img class="post_bg" src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现一个自己的spring-boot-starter"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84spring-boot-starter/" title="实现一个自己的spring-boot-starter">实现一个自己的spring-boot-starter</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-21T06:45:08.000Z" title="发表于 2020-06-21 14:45:08">2020-06-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div><div class="content">前言&emsp;　　工作后总觉得时间不够用了，好久没来记录博客，以至于我都要忘记怎么写了，哈哈哈，博客是一个记录分享的地方，还是得继续运营起来。
+
+一直往前走，也不要忘记为什么出发
+
+spring-boot-starter是什么&emsp;　　众所周知，Springboot是我们可以开箱即用的Java开发框架，其本身就使用到了spring-boot-starter，starter相当于一个模块，我们能够根据需要引入不同的starter，然后某些starter可能需要添加一些配置项，其他就不需要做过多的配置和依赖，springboot就能够自动扫描并加载相应的模块。
+&emsp;　　常见的starter有spring-boot-starter-web，mybatis-spring-boot-starter，spring-boot-starter-data-redis等。
+我们用starter可以拿来干什么&emsp;　　平时工作中或多或少会遇到一些SDK，jar包封装之类的东西，比如我们开发了一个公共组件，当其他的业务系统想要接入到这个公共组件中，那么此时直接封装一个starter最好不 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Anhao</div><div class="author-info__description">伯乐得见绝世好马，子期终遇伯牙佳音</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xuanhaoo"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:1335637386@qq.com" target="_blank" title="Email"><i class="iconfont icon-youxiang card_icon"></i></a><a class="social-icon" href="https://weixin.com" target="_blank" title="Weixin"><i class="iconfont icon-weixin1 card_icon"></i></a><a class="social-icon" href="https://www.bilibili.com" target="_blank" title="Bilibili"><i class="iconfont icon-bilibili1 card_icon"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="okhttp踩坑"/></a><div class="content"><a class="title" href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑">okhttp踩坑</a><time datetime="2020-12-04T12:08:39.000Z" title="发表于 2020-12-04 20:08:39">2020-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="List对象集合根据组合属性进行差集运算"/></a><div class="content"><a class="title" href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算">List对象集合根据组合属性进行差集运算</a><time datetime="2020-11-24T06:29:08.000Z" title="发表于 2020-11-24 14:29:08">2020-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark"><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/blog20-1120/TM-logo.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="再见，teammark"/></a><div class="content"><a class="title" href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark">再见，teammark</a><time datetime="2020-11-20T12:04:14.000Z" title="发表于 2020-11-20 20:04:14">2020-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型"><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/JMM%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%981.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM理解---内存模型"/></a><div class="content"><a class="title" href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型">JVM理解---内存模型</a><time datetime="2020-07-18T14:03:37.000Z" title="发表于 2020-07-18 22:03:37">2020-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/redis%E9%94%81%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" title="redis锁实现分布式环境下的定时任务"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="redis锁实现分布式环境下的定时任务"/></a><div class="content"><a class="title" href="/redis%E9%94%81%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" title="redis锁实现分布式环境下的定时任务">redis锁实现分布式环境下的定时任务</a><time datetime="2020-07-10T06:18:46.000Z" title="发表于 2020-07-10 14:18:46">2020-07-10</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">11</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/"><span class="card-category-list-name">生活记录</span><span class="card-category-list-count">2</span></a></li>
+            
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/JVM/" style="font-size: 1.1em; color: #999">JVM</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/XXL-JOB/" style="font-size: 1.37em; color: #99a4b2">XXL-JOB</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.37em; color: #99a4b2">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.1em; color: #999">分布式</a> <a href="/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/" style="font-size: 1.1em; color: #999">小技巧</a> <a href="/tags/%E5%BC%80%E6%BA%90/" style="font-size: 1.37em; color: #99a4b2">开源</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/%E9%9A%8F%E6%89%8B%E8%AE%B0/" style="font-size: 1.23em; color: #999ea6">随手记</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/12/"><span class="card-archive-list-date">十二月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/12/"><span class="card-archive-list-date">十二月 2018</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/11/"><span class="card-archive-list-date">十一月 2018</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">14</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">19.6k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-01-20T10:08:09.731Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By Anhao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "伯乐得见绝世好马，子期终遇伯牙佳音".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '伯'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

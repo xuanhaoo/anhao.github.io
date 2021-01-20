@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Anhao's blog - 干净使然，像心称意</title><meta name="author" content="Anhao"><meta name="copyright" content="Anhao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="伯乐得见绝世好马，子期终遇伯牙佳音">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Anhao&#39;s blog">
+<meta property="og:url" content="http://ianhao.top/page/2/index.html">
+<meta property="og:site_name" content="Anhao&#39;s blog">
+<meta property="og:description" content="伯乐得见绝世好马，子期终遇伯牙佳音">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ianhao.top/null">
+<meta property="article:author" content="Anhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ianhao.top/null"><link rel="shortcut icon" href="/img/logo.svg"><link rel="canonical" href="http://ianhao.top/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-01-20 18:08:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/iconfont.min.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/wallhaven-j5mz95_2560x1440.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Anhao's blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Anhao's blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="mailto:1335637386@qq.com" target="_blank" title="Email"><i class="iconfont icon-youxiang card_icon"></i></a><a class="social-icon" href="https://weixin.com" target="_blank" title="Weixin"><i class="iconfont icon-weixin1 card_icon"></i></a><a class="social-icon" href="https://www.bilibili.com" target="_blank" title="Bilibili"><i class="iconfont icon-bilibili1 card_icon"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B/" title="Java线程池，了解一下">     <img class="post_bg" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java线程池，了解一下"></a></div><div class="recent-post-info"><a class="article-title" href="/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B/" title="Java线程池，了解一下">Java线程池，了解一下</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-12-08T07:14:24.000Z" title="发表于 2018-12-08 15:14:24">2018-12-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div><div class="content">线程池概述&emsp;　　线程池，通俗的说就是一个容器提前创建了若干个线程，当有任务进入队列或者需要处理的时候，空闲的线程就会来处理任务，当处理完任务后，线程不会被销毁，等待下一个任务的执行。
+为何要使用线程池&emsp;　　一般创建线程都是通过 new Thread新建对象来完成的，这种方式存在一些缺点：
+
+
+每次都需要通过new来生成对象，性能差；
+线程缺乏统一的管理，因此可能会无限制的生成对象，互相竞争，占用系统过多的资源，导致OOM（内存溢出）；
+线程功能单一。
+
+
+&emsp;　　使用线程池有以下优势：
+
+
+可以重用已存在的线程，减少创建、销亡的开销，性能较好；
+有效的控制并发数量，提高资源的利用率，避免资源的过多竞争，减少阻塞；
+提供功能较多，比如定期，定时执行任务，控制并发数量等等。
+
+
+线程池关键类ThreadPoolExecutor类&emsp;　　使用ThreadPoolExecutor类来创建线程池。查阅源代码
+
+&emsp;　　ThreadPoolExecutor类提供了4个构造方法，但细心点大家会发现，前面三个参数少点的构造方法都会去调用第四个参数完全的构造方 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Java%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" title="Java之单例模式笔记">     <img class="post_bg" src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java之单例模式笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/Java%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" title="Java之单例模式笔记">Java之单例模式笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-12-01T03:34:15.000Z" title="发表于 2018-12-01 11:34:15">2018-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div><div class="content">单例模式概述&emsp;　　单例模式是一种常见的设计模式，最近也再一次进行学习，所以写一篇日志记录梳理一下。&emsp;　　单例模式的构造方法私有，确保该类只能由自己初始化，进而向其他的类提供这一唯一实例，减少资源的浪费，系统的开销。单例模式应用场景比如数据库的连接配置，日志对象等信息可以使用单例作为载体。一个单例模式具有以下3个特点：
+
+
+一个类只能有一个实例对象的存在
+该实例对象由自己创建唯一实例
+该类要向其他的类提供这一实例对象
+
+
+实现方式&emsp;　　了解了单例模式的基本概述后，一起来看一下模式的实现，单例模式有多种实现，我这里主要记录3种方式：饿汉式，懒汉式，枚举实现。
+懒汉式1.懒汉式普通写法，这种实现方式在单线程环境下是没有线程安全问题的，但在多线程环境下，同时调用getInstance方法，就有可能创建多个对象。
+1234567891011121314151617181920212223package baiduyun.singleton;/** * 懒汉式 -- 普通写法 * 线程不安全 */public class SingletonEx1 &#123;     ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/%E4%B8%80%E5%91%A8%E5%86%85%E7%AD%BE%E5%88%B0%E8%BF%9E%E7%BB%AD%E5%A4%A9%E6%95%B0%E6%B1%82%E8%A7%A3/" title="一周内签到连续天数求解">     <img class="post_bg" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E7%AD%BE%E5%88%B0%E5%9B%BE1.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一周内签到连续天数求解"></a></div><div class="recent-post-info"><a class="article-title" href="/%E4%B8%80%E5%91%A8%E5%86%85%E7%AD%BE%E5%88%B0%E8%BF%9E%E7%BB%AD%E5%A4%A9%E6%95%B0%E6%B1%82%E8%A7%A3/" title="一周内签到连续天数求解">一周内签到连续天数求解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-11-24T07:17:02.000Z" title="发表于 2018-11-24 15:17:02">2018-11-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/">小技巧</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">背景&emsp;　　上个月，在实习的公司做Java后端开发，突然，在某个像往常一样 —— 上下眼皮打架的下午，前端对我说，“你这个签到天数没有返回连续签到的天数，是不是没有好好看产品的需求呀”，嗯？撒子哦，打开jira，发现需求更新了，好吧，那我就返回个天数给你吧！
+思路求解&emsp;　　首先，是这样的。功能就是一个签到领红包的活动，只不过控制的周期是一周一个轮回，一个周期7天，即从周一到周日。看了一下网上的连续签到天数求法，嗯，可能是我方式不对，不合胃口，我来自己写一个吧！
+分析&emsp;　　1. 签到记录数据肯定是保存在数据库里面的，我们先取出来，再做处理；
+&emsp;　　2. 一周7天的话，那就把每一天用数字来代表吧，比起时间那一长串方便一点，1…..7；
+&emsp;　　3. 连续签到的话，那说明中间不能断，断了就不连续了；
+&emsp;　　4. 需要知道当前天的标识，来进行条件处理判断，第一种：当前天还未签到；第二种：当前天已经签到；
+&emsp;　　ok~，经过一顿分析，问题演就变成了：
+
+给定一个不包含重复数字的数组，以及一个数字，所有数字的范围属于[1,7]，求给 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/Hello-Anhao-s-blog/" title="Hello, Anhao's blog">     <img class="post_bg" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/origin_hexo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello, Anhao's blog"></a></div><div class="recent-post-info"><a class="article-title" href="/Hello-Anhao-s-blog/" title="Hello, Anhao's blog">Hello, Anhao's blog</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-11-03T03:39:20.000Z" title="发表于 2018-11-03 11:39:20">2018-11-03</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9A%8F%E6%89%8B%E8%AE%B0/">随手记</a></span></div><div class="content">写在前面&emsp;　　大概是2017年年初，开始萌生想折腾一个博客的想法。刚好在学校里学了php以及thinkphp框架，瞬间感觉写博客有望了。于是在过年期间不停的折腾~~，算是自己徒手搭建好了博客，当时也申请的阿里云的免费体验机，放到服务器上，然后通过IP地址访问，顿时逼格满满有木有:)。好景不长:(，开学了学业繁忙，就放弃继续玩这些了。突然在2018的6月份，再次心血来潮，好吧（其实也是因为天时地利，学了Springboot，Vue，Nginx这些玩意儿，总感觉不折腾一下不舒服~），嘟嘟嘟，又开始了。这两次博客源码都可以在我的GitHub上找到，初学入门还是可以看下的哈！
+&emsp;　　好了，言归正传。为什么决定好好地正式的写博客了？在某一个月黑风高的夜晚，我看到这个页面阿里中间件团队博客，或许是一见倾心，或许是仰慕已久。没想到还能这样，请原谅我的孤陋寡闻。搜寻hexo的知识，搭建您如今看到的Anhao’s blog，正式踏上征途了！
+搭建过程&emsp;　　网上有许多的hexo的详细教程，大家可以根据自身搜寻参考。此文记录自己的安装步骤，或多或少，略微差别，注本文环境是在ma ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Anhao</div><div class="author-info__description">伯乐得见绝世好马，子期终遇伯牙佳音</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xuanhaoo"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:1335637386@qq.com" target="_blank" title="Email"><i class="iconfont icon-youxiang card_icon"></i></a><a class="social-icon" href="https://weixin.com" target="_blank" title="Weixin"><i class="iconfont icon-weixin1 card_icon"></i></a><a class="social-icon" href="https://www.bilibili.com" target="_blank" title="Bilibili"><i class="iconfont icon-bilibili1 card_icon"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="okhttp踩坑"/></a><div class="content"><a class="title" href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑">okhttp踩坑</a><time datetime="2020-12-04T12:08:39.000Z" title="发表于 2020-12-04 20:08:39">2020-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="List对象集合根据组合属性进行差集运算"/></a><div class="content"><a class="title" href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算">List对象集合根据组合属性进行差集运算</a><time datetime="2020-11-24T06:29:08.000Z" title="发表于 2020-11-24 14:29:08">2020-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark"><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/blog20-1120/TM-logo.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="再见，teammark"/></a><div class="content"><a class="title" href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark">再见，teammark</a><time datetime="2020-11-20T12:04:14.000Z" title="发表于 2020-11-20 20:04:14">2020-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型"><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/JMM%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%981.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM理解---内存模型"/></a><div class="content"><a class="title" href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型">JVM理解---内存模型</a><time datetime="2020-07-18T14:03:37.000Z" title="发表于 2020-07-18 22:03:37">2020-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/redis%E9%94%81%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" title="redis锁实现分布式环境下的定时任务"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="redis锁实现分布式环境下的定时任务"/></a><div class="content"><a class="title" href="/redis%E9%94%81%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" title="redis锁实现分布式环境下的定时任务">redis锁实现分布式环境下的定时任务</a><time datetime="2020-07-10T06:18:46.000Z" title="发表于 2020-07-10 14:18:46">2020-07-10</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">11</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/"><span class="card-category-list-name">生活记录</span><span class="card-category-list-count">2</span></a></li>
+            
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/JVM/" style="font-size: 1.1em; color: #999">JVM</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/XXL-JOB/" style="font-size: 1.37em; color: #99a4b2">XXL-JOB</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.37em; color: #99a4b2">中间件</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.1em; color: #999">分布式</a> <a href="/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/" style="font-size: 1.1em; color: #999">小技巧</a> <a href="/tags/%E5%BC%80%E6%BA%90/" style="font-size: 1.37em; color: #99a4b2">开源</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/%E9%9A%8F%E6%89%8B%E8%AE%B0/" style="font-size: 1.23em; color: #999ea6">随手记</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/12/"><span class="card-archive-list-date">十二月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/12/"><span class="card-archive-list-date">十二月 2018</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/11/"><span class="card-archive-list-date">十一月 2018</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">14</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">19.6k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-01-20T10:08:09.731Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By Anhao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "伯乐得见绝世好马，子期终遇伯牙佳音".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '伯'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

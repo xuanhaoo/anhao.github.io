@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>一周内签到连续天数求解 | Anhao's blog</title><meta name="keywords" content="小技巧,算法"><meta name="author" content="Anhao"><meta name="copyright" content="Anhao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="背景&amp;emsp;　　上个月，在实习的公司做Java后端开发，突然，在某个像往常一样 —— 上下眼皮打架的下午，前端对我说，“你这个签到天数没有返回连续签到的天数，是不是没有好好看产品的需求呀”，嗯？撒子哦，打开jira，发现需求更新了，好吧，那我就返回个天数给你吧！ 思路求解&amp;emsp;　　首先，是这样的。功能就是一个签到领红包的活动，只不过控制的周期是一周一个轮回，一个周期7天，即从周一到周日。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一周内签到连续天数求解">
+<meta property="og:url" content="http://ianhao.top/%E4%B8%80%E5%91%A8%E5%86%85%E7%AD%BE%E5%88%B0%E8%BF%9E%E7%BB%AD%E5%A4%A9%E6%95%B0%E6%B1%82%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Anhao&#39;s blog">
+<meta property="og:description" content="背景&amp;emsp;　　上个月，在实习的公司做Java后端开发，突然，在某个像往常一样 —— 上下眼皮打架的下午，前端对我说，“你这个签到天数没有返回连续签到的天数，是不是没有好好看产品的需求呀”，嗯？撒子哦，打开jira，发现需求更新了，好吧，那我就返回个天数给你吧！ 思路求解&amp;emsp;　　首先，是这样的。功能就是一个签到领红包的活动，只不过控制的周期是一周一个轮回，一个周期7天，即从周一到周日。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E7%AD%BE%E5%88%B0%E5%9B%BE1.jpeg">
+<meta property="article:published_time" content="2018-11-24T07:17:02.000Z">
+<meta property="article:modified_time" content="2021-01-20T06:02:04.822Z">
+<meta property="article:author" content="Anhao">
+<meta property="article:tag" content="小技巧">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E7%AD%BE%E5%88%B0%E5%9B%BE1.jpeg"><link rel="shortcut icon" href="/img/logo.svg"><link rel="canonical" href="http://ianhao.top/%E4%B8%80%E5%91%A8%E5%86%85%E7%AD%BE%E5%88%B0%E8%BF%9E%E7%BB%AD%E5%A4%A9%E6%95%B0%E6%B1%82%E8%A7%A3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-20 14:02:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/iconfont.min.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E7%AD%BE%E5%88%B0%E5%9B%BE1.jpeg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Anhao's blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">一周内签到连续天数求解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-11-24T07:17:02.000Z" title="发表于 2018-11-24 15:17:02">2018-11-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-20T06:02:04.822Z" title="更新于 2021-01-20 14:02:04">2021-01-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">901</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>&emsp;　　上个月，在实习的公司做Java后端开发，突然，在某个像往常一样 —— 上下眼皮打架的下午，前端对我说，“你这个签到天数没有返回连续签到的天数，是不是没有好好看产品的需求呀”，嗯？撒子哦，打开jira，发现需求更新了，好吧，那我就返回个天数给你吧！</p>
+<h2 id="思路求解"><a href="#思路求解" class="headerlink" title="思路求解"></a>思路求解</h2><p>&emsp;　　首先，是这样的。功能就是一个签到领红包的活动，只不过控制的周期是一周一个轮回，一个周期7天，即从周一到周日。看了一下网上的连续签到天数求法，嗯，可能是我方式不对，不合胃口，我来自己写一个吧！</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>&emsp;　　1. 签到记录数据肯定是保存在数据库里面的，我们先取出来，再做处理；</p>
+<p>&emsp;　　2. 一周7天的话，那就把每一天用数字来代表吧，比起时间那一长串方便一点，1…..7；</p>
+<p>&emsp;　　3. 连续签到的话，那说明中间不能断，断了就不连续了；</p>
+<p>&emsp;　　4. 需要知道当前天的标识，来进行条件处理判断，第一种：当前天还未签到；第二种：当前天已经签到；</p>
+<p>&emsp;　　ok~，经过一顿分析，问题演就变成了：</p>
+<blockquote>
+<p>给定一个不包含重复数字的数组，以及一个数字，所有数字的范围属于[1,7]，求给定数字或者比给定数字小1的数是否存在包含它连续区间，求区间长度（当只有一个数字时，长度为1）</p>
+<p>example: array = {1,2,4,5,6}，index = 7</p>
+<p>out：3</p>
+<p>example: array = {1,2,4}，index = 6</p>
+<p>out：0</p>
+</blockquote>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><table><br>    <tr><br>        <td ><center><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E7%AD%BE%E5%88%B0%E5%9B%BE1.jpeg">图1</center></td><br>        <td ><center><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E7%AD%BE%E5%88%B0%E5%9B%BE2.jpg">图2</center></td><br>    </tr><br></table>
+
+<h3 id="动手"><a href="#动手" class="headerlink" title="动手"></a>动手</h3><p>&emsp;　　直接上代码~</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 已经签到的天数索引</span></span><br><span class="line">        <span class="keyword">int</span>[] array = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>&#125;;</span><br><span class="line">        <span class="comment">// 计算当前天索引</span></span><br><span class="line">        <span class="keyword">int</span> currentDayIndex = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">int</span> count = judgeContinueDay(array, currentDayIndex);</span><br><span class="line">        System.out.println(count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">judgeContinueDay</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> currentDayIndex)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 判断数值大小范围省略</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 该周一天也没有签到</span></span><br><span class="line">        <span class="keyword">if</span> (array.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 先进行排序，从小到大</span></span><br><span class="line">        Arrays.sort(array);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 注意：通过binarySearch方法查找是否存在，使用此方法前确保数组已排序</span></span><br><span class="line"><span class="comment">         * 返回值问题：该方法是通过二分法来搜索，返回查找的指定元素的索引（存在于</span></span><br><span class="line"><span class="comment">         * 			 数组中，索引0开始），如果没有查找到返回-1或者-(插入点)，</span></span><br><span class="line"><span class="comment">         * 			 比如，数组排序后&#123;1,2,4,7&#125;,查询的为3，则返回-3（不存在于</span></span><br><span class="line"><span class="comment">         * 			 数组中，索引将从1开始）；具体细则可以查阅。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">// 当前天是否存在</span></span><br><span class="line">        <span class="keyword">int</span> index1 = Arrays.binarySearch(array, currentDayIndex);</span><br><span class="line">        <span class="comment">// 当前天的前一天是否存在</span></span><br><span class="line">        <span class="keyword">int</span> index2 = Arrays.binarySearch(array, currentDayIndex - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> tmpIndex;</span><br><span class="line">        <span class="keyword">if</span> (index1 &lt; <span class="number">0</span> &amp;&amp; index2 &lt; <span class="number">0</span>) &#123; <span class="comment">// 说明至少断签1天</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index1 &lt; <span class="number">0</span>) &#123; <span class="comment">// 今天还没签，从昨天开始判断</span></span><br><span class="line">            tmpIndex = index2;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;	<span class="comment">// 今天已签，从今天开始判断</span></span><br><span class="line">            tmpIndex = index1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 能走到这里，说明至少有连续签到1天</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 从找到的索引往前查找，如果断开了则不连续，结束</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = tmpIndex; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[i] - <span class="number">1</span> == array[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&emsp;　　注意一点：Arrays的binarySearch方法的使用以及返回值问题就好了。</p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>&emsp;　　小生阅历较少，写的东西很基础，可能方法也不是最优，仅做一个记录，望回首见证一路成长。希望各位看官不吝指教！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Anhao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://ianhao.top/%E4%B8%80%E5%91%A8%E5%86%85%E7%AD%BE%E5%88%B0%E8%BF%9E%E7%BB%AD%E5%A4%A9%E6%95%B0%E6%B1%82%E8%A7%A3/">http://ianhao.top/%E4%B8%80%E5%91%A8%E5%86%85%E7%AD%BE%E5%88%B0%E8%BF%9E%E7%BB%AD%E5%A4%A9%E6%95%B0%E6%B1%82%E8%A7%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://ianhao.top" target="_blank">Anhao's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/">小技巧</a><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><div class="post_share"><div class="social-share" data-image="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E7%AD%BE%E5%88%B0%E5%9B%BE1.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Java%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/"><img class="prev-cover" src="/img/my-avatar.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java之单例模式笔记</div></div></a></div><div class="next-post pull-right"><a href="/Hello-Anhao-s-blog/"><img class="next-cover" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/origin_hexo.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello, Anhao's blog</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Anhao</div><div class="author-info__description">伯乐得见绝世好马，子期终遇伯牙佳音</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xuanhaoo"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:1335637386@qq.com" target="_blank" title="Email"><i class="iconfont icon-youxiang card_icon"></i></a><a class="social-icon" href="https://weixin.com" target="_blank" title="Weixin"><i class="iconfont icon-weixin1 card_icon"></i></a><a class="social-icon" href="https://www.bilibili.com" target="_blank" title="Bilibili"><i class="iconfont icon-bilibili1 card_icon"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E6%B1%82%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">思路求解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%9B%BE"><span class="toc-number">2.2.</span> <span class="toc-text">效果图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%89%8B"><span class="toc-number">2.3.</span> <span class="toc-text">动手</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F"><span class="toc-number">3.</span> <span class="toc-text">结束</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="okhttp踩坑"/></a><div class="content"><a class="title" href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑">okhttp踩坑</a><time datetime="2020-12-04T12:08:39.000Z" title="发表于 2020-12-04 20:08:39">2020-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="List对象集合根据组合属性进行差集运算"/></a><div class="content"><a class="title" href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算">List对象集合根据组合属性进行差集运算</a><time datetime="2020-11-24T06:29:08.000Z" title="发表于 2020-11-24 14:29:08">2020-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark"><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/blog20-1120/TM-logo.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="再见，teammark"/></a><div class="content"><a class="title" href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark">再见，teammark</a><time datetime="2020-11-20T12:04:14.000Z" title="发表于 2020-11-20 20:04:14">2020-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型"><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/JMM%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%981.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM理解---内存模型"/></a><div class="content"><a class="title" href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型">JVM理解---内存模型</a><time datetime="2020-07-18T14:03:37.000Z" title="发表于 2020-07-18 22:03:37">2020-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/redis%E9%94%81%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" title="redis锁实现分布式环境下的定时任务"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="redis锁实现分布式环境下的定时任务"/></a><div class="content"><a class="title" href="/redis%E9%94%81%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" title="redis锁实现分布式环境下的定时任务">redis锁实现分布式环境下的定时任务</a><time datetime="2020-07-10T06:18:46.000Z" title="发表于 2020-07-10 14:18:46">2020-07-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By Anhao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
