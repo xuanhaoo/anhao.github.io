@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MongoTemplate聚合（一）$lookup | Anhao's blog</title><meta name="keywords" content="Java,mongodb"><meta name="author" content="Anhao"><meta name="copyright" content="Anhao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="mongodb&amp;emsp;　　最近入职了新的公司，新公司统一使用的mongodb，es等非关系型数据库。以前对es有一些了解，其实就是灵活的文档类型结构，不受限于关系型数据库的那种字段唯一确定的”死板“，但是无论是关系型数据库还是非关系型数据库，目前使用了一段时间来说，我认为各有优劣，具体选择要结合业务场景来进行选择。 &amp;emsp;　　有关mongo的快速学习文档可以参照以下资料来学习：   Mo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoTemplate聚合（一）$lookup">
+<meta property="og:url" content="http://ianhao.top/MongoTemplate%E8%81%9A%E5%90%88%EF%BC%88%E4%B8%80%EF%BC%89$lookup/index.html">
+<meta property="og:site_name" content="Anhao&#39;s blog">
+<meta property="og:description" content="mongodb&amp;emsp;　　最近入职了新的公司，新公司统一使用的mongodb，es等非关系型数据库。以前对es有一些了解，其实就是灵活的文档类型结构，不受限于关系型数据库的那种字段唯一确定的”死板“，但是无论是关系型数据库还是非关系型数据库，目前使用了一段时间来说，我认为各有优劣，具体选择要结合业务场景来进行选择。 &amp;emsp;　　有关mongo的快速学习文档可以参照以下资料来学习：   Mo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ianhao.top/img/my-avatar.png">
+<meta property="article:published_time" content="2021-01-26T02:19:46.000Z">
+<meta property="article:modified_time" content="2021-01-26T03:56:42.935Z">
+<meta property="article:author" content="Anhao">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="mongodb">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ianhao.top/img/my-avatar.png"><link rel="shortcut icon" href="/img/logo.svg"><link rel="canonical" href="http://ianhao.top/MongoTemplate%E8%81%9A%E5%90%88%EF%BC%88%E4%B8%80%EF%BC%89$lookup/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-26 11:56:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/iconfont.min.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/my-avatar.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Anhao's blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MongoTemplate聚合（一）$lookup</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-26T02:19:46.000Z" title="发表于 2021-01-26 10:19:46">2021-01-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-26T03:56:42.935Z" title="更新于 2021-01-26 11:56:42">2021-01-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h2><p>&emsp;　　最近入职了新的公司，新公司统一使用的mongodb，es等非关系型数据库。以前对es有一些了解，其实就是灵活的文档类型结构，不受限于关系型数据库的那种字段唯一确定的”死板“，但是无论是关系型数据库还是非关系型数据库，目前使用了一段时间来说，我认为各有优劣，具体选择要结合业务场景来进行选择。</p>
+<p>&emsp;　　有关mongo的快速学习文档可以参照以下资料来学习：</p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.mongoing.com/">MongoDB中文手册|官方文档中文版</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020618248">MongoDB–Spring Data MongoDB详细的操作手册</a></li>
+</ul>
+</blockquote>
+<h2 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h2><p>&emsp;　　在我这种习惯了mysql这种关系型数据的结构设计中，来处理mongo集合（数据表）的一些操作票，或多或少还是受到关系型数据库思想的影响与约束，毕竟还是使用了这么多年了。。。<br>&emsp;　　比如在下面这种场景下：A对象集合与B对象集合之间有关联关系，此时，针对于上级关系修改操作较少的可以将他们之间的关系映射成嵌入式的子文档，但他们的数据都在经常性的发生相互变化，这种情况很显然不能将数据作为嵌入式文档保存，应该要实时的查询关联的数据。<br>&emsp;　　mongo中早期的一些版本又没有left join，right join的概念，后来在3.2版本开始，增加了$lookup操作。</p>
+<p>&emsp;　　在介绍$lookup前简单了解一下mongo中的一些聚合管道操作：</p>
+<table>
+<thead>
+<tr>
+<th>聚合指令</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$match</td>
+<td>筛选，选择要处理的文档</td>
+</tr>
+<tr>
+<td>$project</td>
+<td>指定输出文档中的字段，映射别名等</td>
+</tr>
+<tr>
+<td>$group</td>
+<td>顾名思义，分组 根据指定内容来分组</td>
+</tr>
+<tr>
+<td>$limit</td>
+<td>限制传递到下一步的文档数量</td>
+</tr>
+<tr>
+<td>$skip</td>
+<td>跳过当前顺序的一定数量的文档</td>
+</tr>
+<tr>
+<td>$unwind</td>
+<td>扩展数组，为每一个3数组入口生成一个输出文档</td>
+</tr>
+<tr>
+<td>$sort</td>
+<td>文档排序</td>
+</tr>
+<tr>
+<td>$lookup</td>
+<td>多表关联(since 3.2+)</td>
+</tr>
+<tr>
+<td>$geoNear</td>
+<td>选择某个地理位置附近的的文档</td>
+</tr>
+<tr>
+<td>$out</td>
+<td>把管道的结果写入某个集合</td>
+</tr>
+<tr>
+<td>$redact</td>
+<td>控制特定数据的访问</td>
+</tr>
+</tbody>
+</table>
+<p>&emsp;　　上面的指定都属于聚合管道中的操作，（官方解释）聚合管道是用于数据聚合的框架，其模型基于数据处理管道的概念。文档进入多阶段管道，将文档转换为聚合结果。MongoDB 聚合管道由多个阶段组成。每个阶段在文档通过管道时转换文档。管道阶段不需要为每个输入文档生成一个输出文档; 如：某些阶段可能会生成新文档或过滤掉文档。后边有时间写一篇文章来记录一下聚合管道。</p>
+<h3 id="特别说明-局限性"><a href="#特别说明-局限性" class="headerlink" title="特别说明 - 局限性"></a>特别说明 - 局限性</h3><p>&emsp;　　<font color=red> mongodb的官方文档说明：$lookup: &gt; Performs a left outer join to an unsharded collection in the same database to filter in documents from the “joined” collection for processing. The $lookup stage does an equality match between a field from the input documents with a field from the documents of the “joined” collection.</p>
+<p>简单点说就是: $lookup只能在同一个数据库中, 且这个collection不能有分片. 如果你的集合设计不在一个库中, 且设置了分片的话, 那下面的连表操作都是无效的，请不用浪费时间浏览了。</font></p>
+<h3 id="lookup关联"><a href="#lookup关联" class="headerlink" title="$lookup关联"></a>$lookup关联</h3><p>&emsp;　　$lookup是管道中的一个阶段，在这个阶段，可以做连表操作，具有如下语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   $lookup:</span><br><span class="line">     &#123;</span><br><span class="line">       from: &lt;collection to join 需要左连接的集合&gt;,</span><br><span class="line">       localField: &lt;主集合中与该左连集合关联的字段&gt;,</span><br><span class="line">       foreignField: &lt;左连集合中对应的字段&gt;,</span><br><span class="line">       as: &lt;output array field 指定新输入数组字段的名称：该处会处理成数组&gt;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>该操作等效于如下sql释义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT *, &lt;output array field&gt;</span><br><span class="line">FROM collection</span><br><span class="line">WHERE &lt;output array field&gt; IN</span><br><span class="line">	(SELECT * FROM &lt;collection to join&gt;</span><br><span class="line">WHERE &lt;foreignField&gt;&#x3D; &lt;collection.localField&gt;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="mongoTemplate中使用"><a href="#mongoTemplate中使用" class="headerlink" title="mongoTemplate中使用"></a>mongoTemplate中使用</h3><p>&emsp;　　说了那么多，是想介绍一下简单的概念，言归正传，开始讲在springboot中使用mongoTemplate中该如何使用。<br>&emsp;　　假设当前有两个集合，一个company，一个product，产品隶属于公司下，他们之间存在关联关系。<br>&emsp;　　1. CompanyMongoPO.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.experimental.Accessors;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.mongodb.core.mapping.Document;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Accessors(chain = true)</span></span><br><span class="line"><span class="meta">@Document(&quot;company&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompanyMongoPO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&emsp;　　2. productMongoPO.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.experimental.Accessors;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.mongodb.core.mapping.Document;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Accessors(chain = true)</span></span><br><span class="line"><span class="meta">@Document(&quot;product&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductMongoPO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyId;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&emsp;　　3. 在Dao层进行查询操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line">		 Criteria criteria = <span class="keyword">new</span> Criteria();</span><br><span class="line">		 criteria.and(<span class="string">&quot;companyId&quot;</span>).is(<span class="string">&quot;companyId&quot;</span>);</span><br><span class="line">		 <span class="comment">// 构造聚合管道操作</span></span><br><span class="line">        List&lt;AggregationOperation&gt; operationList = Lists.newArrayList();</span><br><span class="line">        <span class="comment">// 这一步很重要，将product中的companyId字段转化为ObjectId类型，因为String类型和ObjectId类型不一样，会导致连接失效</span></span><br><span class="line">        AddFieldsOperation addFieldsOperation = AddFieldsOperation.addField(<span class="string">&quot;companyId&quot;</span>).withValue(ConvertOperators.ToObjectId.toObjectId(<span class="string">&quot;$companyId&quot;</span>)).build();</span><br><span class="line">        LookupOperation companyLookupOperation = LookupOperation.newLookup()</span><br><span class="line">                .from(<span class="string">&quot;company&quot;</span>)</span><br><span class="line">                .localField(<span class="string">&quot;companyId&quot;</span>)</span><br><span class="line">                .foreignField(<span class="string">&quot;_id&quot;</span>)</span><br><span class="line">                .as(<span class="string">&quot;companyJoin&quot;</span>);</span><br><span class="line">        AggregationOperation match = Aggregation.match(criteria);</span><br><span class="line">        ProjectionOperation project = Aggregation.project(<span class="string">&quot;id&quot;</span>,<span class="string">&quot;name&quot;</span>,<span class="string">&quot;companyId&quot;</span>)</span><br><span class="line">                                    .and(<span class="string">&quot;companyJoin.name&quot;</span>).as(<span class="string">&quot;companyName&quot;</span>);</span><br><span class="line">        <span class="comment">// 分页与排序操作，字段未在上面体现出来</span></span><br><span class="line">        SkipOperation skip = Aggregation.skip((<span class="keyword">long</span>)param.getOffset());</span><br><span class="line">        LimitOperation limit = Aggregation.limit(param.getPageSize());</span><br><span class="line">        SortOperation sort = Aggregation.sort(Sort.Direction.DESC, <span class="string">&quot;createTime&quot;</span>);</span><br><span class="line">        <span class="comment">// 封装条件：此处的顺序可以调整 将match放到前面可以避免因为AddFiled引起的companyId字段类型变化</span></span><br><span class="line">        operationList.add(match);</span><br><span class="line">        operationList.add(addFieldsOperation);</span><br><span class="line">        operationList.add(companyLookupOperation);</span><br><span class="line">        operationList.add(project);</span><br><span class="line">        operationList.add(sort);</span><br><span class="line">        operationList.add(skip);</span><br><span class="line">        operationList.add(limit);</span><br><span class="line"></span><br><span class="line">        Aggregation agg = Aggregation.newAggregation(operationList);</span><br><span class="line">        AggregationResults&lt;ProductItemVO&gt; aggregationResults = <span class="keyword">this</span>.getMongoTemplate().aggregate(agg, <span class="string">&quot;product&quot;</span>, ProductItemVO.class);</span><br><span class="line">        List&lt;ProductItemVO&gt; dataList = aggregationResults.getMappedResults();</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>&emsp;　　如上伪代码，就是一个简单的聚合操作，当然有几个地方需要注意一下：</p>
+<blockquote>
+<ul>
+<li><p>连表时的字段类型要一致：比如上面的companyId和id字段，一个String，一个是ObjectId类型，需要将companyId转化为ObjectId类型，再进行连接，当然这个地方我理解也可以将_id转化为String类型，但是经过我的测试，发现没有成功，还需要找下原因。</p>
+</li>
+<li><p>在将companyId转化为ObjectId类型后，如果后面有使用到companyId作为match的筛选条件字段，这个地方要注意一下，在聚合管道中，有一定的顺序性，如果将AddFieldsOperation操作放在match之前，那么会导致match这个字段的条件失效，需要调整一下顺序，将match放在前面，先查找出符合条件的数据再进行连表查询，这样既可以提高查询效率，又可以避免字段类型问题。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;　　目前用到的就是这样的操作，往后还有更复杂的操作时再继续更新记录内容。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Anhao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://ianhao.top/MongoTemplate%E8%81%9A%E5%90%88%EF%BC%88%E4%B8%80%EF%BC%89$lookup/">http://ianhao.top/MongoTemplate%E8%81%9A%E5%90%88%EF%BC%88%E4%B8%80%EF%BC%89$lookup/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://ianhao.top" target="_blank">Anhao's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/mongodb/">mongodb</a></div><div class="post_share"><div class="social-share" data-image="/img/my-avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/okhttp%E8%B8%A9%E5%9D%91/"><img class="next-cover" src="/img/my-avatar.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">okhttp踩坑</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/JVM理解---内存模型/" title="JVM理解---内存模型"><img class="cover" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/JMM%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%981.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-18</div><div class="title">JVM理解---内存模型</div></div></a></div><div><a href="/Java线程池，了解一下/" title="Java线程池，了解一下"><img class="cover" src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-12-08</div><div class="title">Java线程池，了解一下</div></div></a></div><div><a href="/Java之单例模式笔记/" title="Java之单例模式笔记"><img class="cover" src="/img/my-avatar.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-12-01</div><div class="title">Java之单例模式笔记</div></div></a></div><div><a href="/List对象集合根据组合属性进行差集运算/" title="List对象集合根据组合属性进行差集运算"><img class="cover" src="/img/my-avatar.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-24</div><div class="title">List对象集合根据组合属性进行差集运算</div></div></a></div><div><a href="/okhttp踩坑/" title="okhttp踩坑"><img class="cover" src="/img/my-avatar.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-04</div><div class="title">okhttp踩坑</div></div></a></div><div><a href="/实现一个自己的spring-boot-starter/" title="实现一个自己的spring-boot-starter"><img class="cover" src="/img/my-avatar.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-21</div><div class="title">实现一个自己的spring-boot-starter</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Anhao</div><div class="author-info__description">伯乐得见绝世好马，子期终遇伯牙佳音</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xuanhaoo"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:1335637386@qq.com" target="_blank" title="Email"><i class="iconfont icon-youxiang card_icon"></i></a><a class="social-icon" href="https://weixin.com" target="_blank" title="Weixin"><i class="iconfont icon-weixin1 card_icon"></i></a><a class="social-icon" href="https://www.bilibili.com" target="_blank" title="Bilibili"><i class="iconfont icon-bilibili1 card_icon"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mongodb"><span class="toc-number">1.</span> <span class="toc-text">mongodb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.</span> <span class="toc-text">聚合查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%88%AB%E8%AF%B4%E6%98%8E-%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">特别说明 - 局限性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lookup%E5%85%B3%E8%81%94"><span class="toc-number">2.2.</span> <span class="toc-text">$lookup关联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mongoTemplate%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">mongoTemplate中使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/MongoTemplate%E8%81%9A%E5%90%88%EF%BC%88%E4%B8%80%EF%BC%89$lookup/" title="MongoTemplate聚合（一）$lookup"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MongoTemplate聚合（一）$lookup"/></a><div class="content"><a class="title" href="/MongoTemplate%E8%81%9A%E5%90%88%EF%BC%88%E4%B8%80%EF%BC%89$lookup/" title="MongoTemplate聚合（一）$lookup">MongoTemplate聚合（一）$lookup</a><time datetime="2021-01-26T02:19:46.000Z" title="发表于 2021-01-26 10:19:46">2021-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="okhttp踩坑"/></a><div class="content"><a class="title" href="/okhttp%E8%B8%A9%E5%9D%91/" title="okhttp踩坑">okhttp踩坑</a><time datetime="2020-12-04T12:08:39.000Z" title="发表于 2020-12-04 20:08:39">2020-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="List对象集合根据组合属性进行差集运算"/></a><div class="content"><a class="title" href="/List%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88%E6%A0%B9%E6%8D%AE%E7%BB%84%E5%90%88%E5%B1%9E%E6%80%A7%E8%BF%9B%E8%A1%8C%E5%B7%AE%E9%9B%86%E8%BF%90%E7%AE%97/" title="List对象集合根据组合属性进行差集运算">List对象集合根据组合属性进行差集运算</a><time datetime="2020-11-24T06:29:08.000Z" title="发表于 2020-11-24 14:29:08">2020-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark"><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/blog20-1120/TM-logo.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="再见，teammark"/></a><div class="content"><a class="title" href="/%E5%86%8D%E8%A7%81%EF%BC%8Cteammark/" title="再见，teammark">再见，teammark</a><time datetime="2020-11-20T12:04:14.000Z" title="发表于 2020-11-20 20:04:14">2020-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型"><img src="https://anhao-blog-1253924986.cos.ap-chengdu.myqcloud.com/JMM%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%981.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM理解---内存模型"/></a><div class="content"><a class="title" href="/JVM%E7%90%86%E8%A7%A3---%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="JVM理解---内存模型">JVM理解---内存模型</a><time datetime="2020-07-18T14:03:37.000Z" title="发表于 2020-07-18 22:03:37">2020-07-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By Anhao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
